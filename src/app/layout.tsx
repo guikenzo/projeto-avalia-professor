@@ -13,7 +13,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'changethisname',
+  title: 'projeto-avalia-professor',
 };
 
 const RootLayout = ({ children }: PropsWithChildren) => {

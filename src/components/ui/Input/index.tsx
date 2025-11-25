@@ -1,6 +1,6 @@
 'use client';
 
-import type { JSX } from 'react';
+import type { ComponentProps } from 'react';
 import { useState } from 'react';
 import {
   FieldValues,
@@ -20,8 +20,11 @@ type Props<TFieldValues extends FieldValues> = {
   leftIcon?: IconProps;
   mask?: string;
 } & UseControllerProps<TFieldValues> &
-  JSX.IntrinsicElements['input'] &
-  ReactMaskProps<HTMLInputElement>;
+  Omit<
+    ComponentProps<'input'>,
+    'name' | 'defaultValue' | 'value' | 'onChange'
+  > &
+  Omit<ReactMaskProps<HTMLInputElement>, 'name' | 'value' | 'onAccept'>;
 
 const Input = <TFieldValues extends FieldValues>({
   label,
@@ -44,6 +47,8 @@ const Input = <TFieldValues extends FieldValues>({
   });
 
   const commonProps = {
+    ...field,
+    ...props,
     className:
       'text-neutral-60 placeholder:text-neutral-40 w-full p-2 text-lg focus-within:outline-none',
     placeholder,
@@ -51,17 +56,19 @@ const Input = <TFieldValues extends FieldValues>({
       paddingLeft: leftIcon ? 40 : 8,
       paddingRight: password ? 44 : undefined,
     },
-    type: passwordHidden ? 'password' : 'text',
-    ...field,
-    ...props,
+    type: password ? (passwordHidden ? 'password' : 'text') : props.type,
   };
 
   return (
-    <div className="w-full flex-col gap-1">
-      {label && <label htmlFor={name}>{label}</label>}
+    <div className="w-full flex-col gap-2">
+      {label && (
+        <label className="text-xl text-[#454545]" htmlFor={name}>
+          {label}
+        </label>
+      )}
 
       <div className="gap-px">
-        <div className="border-neutral-20 relative items-center overflow-hidden rounded-lg border bg-white">
+        <div className="relative items-center overflow-hidden rounded-lg border border-[#D0D0D0] bg-white">
           {mask ? (
             <IMaskInput mask={mask} {...commonProps} />
           ) : (
@@ -82,15 +89,19 @@ const Input = <TFieldValues extends FieldValues>({
               onClick={() => setPasswordHidden(!passwordHidden)}
             >
               <Icon
-                color={passwordHidden ? colors.neutral[400] : colors.primary}
-                name={passwordHidden ? 'EyeOffIcon' : 'EyeOnIcon'}
+                color={
+                  passwordHidden ? colors.neutral[40] : colors.primary[100]
+                }
+                name={passwordHidden ? 'EyeOffIcon' : 'EyeIcon'}
               />
             </button>
           )}
         </div>
 
         {error?.message && (
-          <span className="text-alert-error text-xs">{error.message}</span>
+          <span className="text-alert-error text-[16px] text-red-500">
+            {error.message}
+          </span>
         )}
       </div>
     </div>
