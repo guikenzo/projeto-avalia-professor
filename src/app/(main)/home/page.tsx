@@ -81,7 +81,7 @@ function App() {
 
       {/* POPUPS */}
       {popupAtivo && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-0 flex justify-center items-center z-50 p-4">
           {(popupAtivo === "cadastro" || popupAtivo === "editar") && (
             <div className="bg-white w-full max-w-4xl rounded-lg p-6 grid md:grid-cols-2 gap-6">
               <div className="flex flex-col gap-4">
@@ -124,7 +124,12 @@ function App() {
               <p className="mb-6">Tem certeza que deseja sair?</p>
               <div className="flex justify-between">
                 <button className="px-4 py-2 bg-gray-400 text-white rounded" onClick={fecharPopup}>Cancelar</button>
-                <button className="px-4 py-2 bg-blue-600 text-white rounded">Sair</button>
+                <button
+                  className="px-4 py-2 bg-blue-600 text-white rounded"
+                  onClick={() => window.location.href = "/"}
+                >
+                  Sair
+                </button>
               </div>
             </div>
           )}
