@@ -1,0 +1,68 @@
+{
+  "name": "changethisname",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
+    "start": "next start",
+    "lint": "eslint",
+    "format": "prettier . --write",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "@svgr/webpack": "^8.1.0",
+    "@tanstack/react-query": "^5.90.5",
+    "axios": "^1.12.2",
+    "date-fns": "^4.1.0",
+    "i": "^0.3.7",
+    "next": "16.0.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "react-hook-form": "^7.65.0",
+    "react-imask": "^7.6.1",
+    "react-toastify": "^11.0.5",
+    "zod": "^4.1.12",
+    "zustand": "^5.0.8"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.38.0",
+    "@next/eslint-plugin-next": "^16.0.0",
+    "@tailwindcss/postcss": "^4.1.16",
+    "@tanstack/eslint-plugin-query": "^5.91.2",
+    "@types/node": "^24.9.1",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "babel-plugin-react-compiler": "^1.0.0",
+    "eslint": "^9.38.0",
+    "eslint-config-next": "^16.0.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-prefer-arrow-functions": "^3.9.1",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^16.4.0",
+    "jiti": "^2.6.1",
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "tailwindcss": "^4.1.16",
+    "ts-plugin-sort-import-suggestions": "^1.0.4",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.2"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all",
+    "arrowParens": "avoid",
+    "endOfLine": "lf",
+    "tailwindStylesheet": "./tailwind.config.js",
+    "plugins": [
+      "prettier-plugin-tailwindcss"
+    ],
+    "tailwindAttributes": [
+      "className",
+      "contentContainerClassName"
+    ]
+  }
+}
