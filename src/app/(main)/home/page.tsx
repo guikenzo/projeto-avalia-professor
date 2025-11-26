@@ -15,7 +15,7 @@ function App() {
   const [menuFiltroAtivo, setMenuFiltroAtivo] = useState(false);
   const [questaoAtual, setQuestaoAtual] = useState({ disciplina: "", enunciado: "", respostas: ["", "", "", "", ""] });
 
-  const abrirPopup = (id, questao = null) => {
+  const abrirPopup = (id: string, questao: any = null) => {
     setPopupAtivo(id);
     if (questao) setQuestaoAtual({ ...questao });
     else setQuestaoAtual({ disciplina: "", enunciado: "", respostas: ["", "", "", "", ""] });
