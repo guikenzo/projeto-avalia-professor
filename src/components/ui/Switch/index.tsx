@@ -33,7 +33,7 @@ const Switch = ({ isActive, onChange }: Props) => {
       className="relative flex w-10 cursor-pointer rounded-full p-0.5 transition"
       disabled={isLoading}
       style={{
-        backgroundColor: enabled ? colors.alert.success : colors.neutral[200],
+        backgroundColor: enabled ? colors.alert.success : colors.neutral[20],
       }}
       type="button"
       onClick={handleToggle}
