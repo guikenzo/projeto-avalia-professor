@@ -25,7 +25,7 @@ const CheckBox = ({ isSelected, label, onClick }: Props) => {
       >
         {isSelected && (
           <Icon
-            color={colors.white}
+            color={colors.neutral.white}
             name="CheckIcon"
             size={12}
             strokeWidth={3}
