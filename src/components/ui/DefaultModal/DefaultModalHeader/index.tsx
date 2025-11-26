@@ -16,7 +16,7 @@ const DefaultModalHeader = ({ title, onClose }: Props) => {
           style={{ width: 28, height: 28 }}
           onClick={onClose}
         >
-          <Icon name="XIcon" size={16} />
+          <Icon name="EyeOffIcon" size={16} />
         </button>
       )}
     </div>
