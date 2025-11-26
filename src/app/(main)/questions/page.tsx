@@ -172,11 +172,19 @@ export default function Home() {
   );
 }
 
-function Popup({ children, onClose, title }) {
+function Popup({ children, onClose, title }: PopupProps) {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50 p-4">
       <div className="bg-white rounded-lg max-w-3xl w-full p-6">
-        <h3 className="text-xl font-bold mb-4">{title}</h3>
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-semibold">{title}</h2>
+          <button
+            onClick={onClose}
+            className="text-gray-600 hover:text-gray-800 text-2xl font-bold"
+          >
+            &times;
+          </button>
+        </div>
         {children}
       </div>
     </div>
