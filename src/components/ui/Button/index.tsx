@@ -37,7 +37,7 @@ const Button = ({
     if (wired) {
       return color;
     }
-    return colors.white;
+    return colors.neutral.white;
   };
 
   const handleClick = async (e: MouseEvent<HTMLButtonElement>) => {
