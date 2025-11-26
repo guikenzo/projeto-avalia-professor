@@ -20,7 +20,7 @@ const CheckBox = ({ isSelected, label, onClick }: Props) => {
           backgroundColor: isSelected
             ? colors.alert.success.primary
             : "transparent",
-          border: isSelected ? "none" : `1px solid ${colors.neutral[200]}`,
+          border: isSelected ? "none" : `1px solid ${colors.neutral[100]}`,
         }}
       >
         {isSelected && (
