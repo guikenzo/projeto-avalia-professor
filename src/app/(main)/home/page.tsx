@@ -23,10 +23,14 @@ function App() {
   const fecharPopup = () => setPopupAtivo(null);
   const toggleFiltro = () => setMenuFiltroAtivo(!menuFiltroAtivo);
 
-  const handleChange = (field, value, index = null) => {
+  const handleChange = (
+    field: string,
+    value: string,
+    index: number | null = null
+  ) => {
     if (field === "respostas") {
       const novasRespostas = [...questaoAtual.respostas];
-      novasRespostas[index] = value;
+      if (index !== null) novasRespostas[index] = value;
       setQuestaoAtual({ ...questaoAtual, respostas: novasRespostas });
     } else {
       setQuestaoAtual({ ...questaoAtual, [field]: value });
