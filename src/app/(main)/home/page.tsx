@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 "use client"
 import React, { useState } from "react";
 
@@ -13,9 +14,16 @@ function App() {
 
   const [popupAtivo, setPopupAtivo] = useState<string | null>(null);
   const [menuFiltroAtivo, setMenuFiltroAtivo] = useState(false);
-  const [questaoAtual, setQuestaoAtual] = useState({ disciplina: "", enunciado: "", respostas: ["", "", "", "", ""] });
+  const [questaoAtual, setQuestaoAtual] = useState<Questao>({ disciplina: "", enunciado: "", respostas: ["", "", "", "", ""] });
 
-  const abrirPopup = (id: string, questao: any = null) => {
+  type Questao = {
+    id?: number;
+    disciplina: string;
+    enunciado: string;
+    respostas: string[];
+  };
+
+  const abrirPopup = (id: string, questao: Questao = null) => {
     setPopupAtivo(id);
     if (questao) setQuestaoAtual({ ...questao });
     else setQuestaoAtual({ disciplina: "", enunciado: "", respostas: ["", "", "", "", ""] });
@@ -24,7 +32,7 @@ function App() {
   const toggleFiltro = () => setMenuFiltroAtivo(!menuFiltroAtivo);
 
   const handleChange = (
-    field: string,
+    field: keyof Questao,
     value: string,
     index: number | null = null
   ) => {
