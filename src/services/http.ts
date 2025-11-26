@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export const baseURL = 'https://base/';
+export const baseURL = 'https://projeto-avalia-hh2z.onrender.com/';
 
 const http = axios.create({
-  baseURL: `${baseURL}api/`,
+  baseURL: `${baseURL}`,
 });
 
 http.interceptors.request.use(

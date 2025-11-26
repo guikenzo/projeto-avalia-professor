@@ -3,6 +3,23 @@ export const queryKeys = {
     all: ['bases'] as const,
     lists: () => [...queryKeys.base.all, 'list'] as const,
   },
+
+  disciplines: {
+    all: ['Disciplines'] as const,
+    lists: () => [...queryKeys.disciplines.all, 'list'] as const,
+    search: (params: { name: string }) =>
+      [...queryKeys.disciplines.all, 'search', params] as const,
+  },
+
+  questions: {
+    all: ['Questions'] as const,
+    lists: () => [...queryKeys.questions.all, 'list'] as const,
+    search: (params: {
+      title: string;
+      disciplinaIds: number[];
+      professorIds: number[];
+    }) => [...queryKeys.questions.all, 'search', params] as const,
+  },
 } as const;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any, no-unused-vars

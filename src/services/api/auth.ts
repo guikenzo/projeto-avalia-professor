@@ -2,7 +2,7 @@ import { LoginForm } from '@/validation/login.validation';
 
 import { http } from '../http';
 
-const BASE_URL = '/auth';
+const BASE_URL = 'https://projeto-avalia-hh2z.onrender.com/auth';
 
 export const authService = {
   login: async (form: LoginForm) => {

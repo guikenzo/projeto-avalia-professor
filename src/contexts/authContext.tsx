@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
 
       if (token) {
         sessionStorage.setItem('accessToken', token);
-        router.replace('/dashboard');
+        router.replace('/home');
       }
     } catch {
       logout();
