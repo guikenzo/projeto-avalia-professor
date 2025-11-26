@@ -172,6 +172,12 @@ export default function Home() {
   );
 }
 
+type PopupProps = {
+  title: string;
+  onClose: () => void;
+  children: React.ReactNode;
+};
+
 function Popup({ children, onClose, title }: PopupProps) {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50 p-4">
