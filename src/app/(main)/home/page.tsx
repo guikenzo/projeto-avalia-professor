@@ -11,7 +11,7 @@ function App() {
     { id: 6, disciplina: "Contabilidade", enunciado: "Questão 6", respostas: ["", "", "", "", ""] },
   ]);
 
-  const [popupAtivo, setPopupAtivo] = useState(null); 
+  const [popupAtivo, setPopupAtivo] = useState<string | null>(null);
   const [menuFiltroAtivo, setMenuFiltroAtivo] = useState(false);
   const [questaoAtual, setQuestaoAtual] = useState({ disciplina: "", enunciado: "", respostas: ["", "", "", "", ""] });
 
