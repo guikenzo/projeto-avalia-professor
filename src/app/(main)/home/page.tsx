@@ -23,7 +23,7 @@ function App() {
     respostas: string[];
   };
 
-  const abrirPopup = (id: string, questao: Questao = null) => {
+  const abrirPopup = (id: string, questao: Questao | null = null) => {
     setPopupAtivo(id);
     if (questao) setQuestaoAtual({ ...questao });
     else setQuestaoAtual({ disciplina: "", enunciado: "", respostas: ["", "", "", "", ""] });
@@ -47,16 +47,17 @@ function App() {
 
   const salvarQuestao = () => {
     if (questaoAtual.id) {
-      setQuestoes(questoes.map(q => (q.id === questaoAtual.id ? questaoAtual : q)));
+      setQuestoes(questoes.map(q =>
+        q.id === questaoAtual.id ? questaoAtual : q
+      ));
     } else {
-      setQuestoes([...questoes, { ...questaoAtual, id: Date.now() }]);
+      setQuestoes([
+        ...questoes,
+        { ...questaoAtual, id: Date.now() }
+      ]);
     }
-    fecharPopup();
-  };
-
-  const descartarAlteracoes = () => {
-    setQuestaoAtual({ disciplina: "", enunciado: "", respostas: ["", "", "", "", ""] });
-    fecharPopup();
+  
+    setPopupAtivo(null);
   };
 
   return (
