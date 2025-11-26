@@ -15,7 +15,7 @@ export type IconProps = {
 const Icon = ({
   name,
   size = 24,
-  color = colors.primary,
+  color = colors.primary[100],
   strokeWidth = 1.5,
   rotate = 0,
   fill = 'none',
