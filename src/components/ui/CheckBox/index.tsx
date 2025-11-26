@@ -17,8 +17,10 @@ const CheckBox = ({ isSelected, label, onClick }: Props) => {
       <div
         className="flex h-6 w-6 items-center justify-center rounded-md"
         style={{
-          backgroundColor: isSelected ? colors.alert.success : 'transparent',
-          border: isSelected ? 'none' : `1px solid ${colors.neutral[200]}`,
+          backgroundColor: isSelected
+            ? colors.alert.success.primary
+            : "transparent",
+          border: isSelected ? "none" : `1px solid ${colors.neutral[200]}`,
         }}
       >
         {isSelected && (
