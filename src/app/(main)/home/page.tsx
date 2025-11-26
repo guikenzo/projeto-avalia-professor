@@ -14,10 +14,15 @@ function App() {
 
   const [popupAtivo, setPopupAtivo] = useState<string | null>(null);
   const [menuFiltroAtivo, setMenuFiltroAtivo] = useState(false);
-  const [questaoAtual, setQuestaoAtual] = useState<Questao>({ disciplina: "", enunciado: "", respostas: ["", "", "", "", ""] });
+  const [questaoAtual, setQuestaoAtual] = useState<Questao>({
+    id: 0,
+    disciplina: "",
+    enunciado: "",
+    respostas: ["", "", "", "", ""]
+  });
 
   type Questao = {
-    id?: number;
+    id: number;
     disciplina: string;
     enunciado: string;
     respostas: string[];
@@ -26,7 +31,12 @@ function App() {
   const abrirPopup = (id: string, questao: Questao | null = null) => {
     setPopupAtivo(id);
     if (questao) setQuestaoAtual({ ...questao });
-    else setQuestaoAtual({ disciplina: "", enunciado: "", respostas: ["", "", "", "", ""] });
+    else setQuestaoAtual({
+      id: 0,
+      disciplina: "",
+      enunciado: "",
+      respostas: ["", "", "", "", ""]
+    });
   };
   const fecharPopup = () => setPopupAtivo(null);
   const toggleFiltro = () => setMenuFiltroAtivo(!menuFiltroAtivo);
