@@ -56,7 +56,7 @@ function App() {
   };
 
   const salvarQuestao = () => {
-    if (questaoAtual.id) {
+    if (questaoAtual.id !== 0) {
       setQuestoes(questoes.map(q =>
         q.id === questaoAtual.id ? questaoAtual : q
       ));
@@ -68,6 +68,16 @@ function App() {
     }
   
     setPopupAtivo(null);
+  };
+
+  const descartarAlteracoes = () => {
+    setPopupAtivo(null);
+    setQuestaoAtual({
+      id: 0,
+      disciplina: "",
+      enunciado: "",
+      respostas: ["", "", "", "", ""]
+    });
   };
 
   return (
