@@ -89,7 +89,7 @@ const Home = () => {
   return (
     <>
       <div className="flex min-h-screen flex-col">
-        <header className="fixed left-0 right-0 top-0 z-10 flex h-20 items-center justify-between rounded-b-md bg-blue-900 px-6 text-white">
+        <header className="flex h-20 items-center justify-between rounded-b-md bg-blue-900 px-6 text-white">
           <h2 className="text-lg font-semibold md:text-xl">
             Projeto Avalia - Área do Professor
           </h2>
@@ -104,8 +104,8 @@ const Home = () => {
           </div>
         </header>
 
-        <div
-          className="mt-20 flex h-full min-h-screen flex-1 flex-col"
+        <main
+          className="flex flex-1 flex-col"
           style={{ backgroundColor: colors.neutral.background }}
         >
           <div className="flex w-full justify-between p-5">
@@ -156,39 +156,38 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="flex flex-1 flex-col gap-4 p-5">
-            {data &&
-              data.map(item => (
-                <QuestionItem
-                  key={item.id}
-                  answer1={{
-                    label: item.answerA,
-                    correct: item.correctAnswer === 'A',
-                  }}
-                  answer2={{
-                    label: item.answerB,
-                    correct: item.correctAnswer === 'B',
-                  }}
-                  answer3={{
-                    label: item.answerC,
-                    correct: item.correctAnswer === 'C',
-                  }}
-                  answer4={{
-                    label: item.answerD,
-                    correct: item.correctAnswer === 'D',
-                  }}
-                  answer5={{
-                    label: item.answerE,
-                    correct: item.correctAnswer === 'E',
-                  }}
-                  date={format(item.updatedAt, 'dd/MM/yyyy')}
-                  discipline={item.subject}
-                  questionId={item.id}
-                  questionText={item.title}
-                />
-              ))}
+          <div className="flex flex-1 flex-col gap-4 overflow-auto p-5">
+            {data?.map(item => (
+              <QuestionItem
+                key={item.id}
+                answer1={{
+                  label: item.answerA,
+                  correct: item.correctAnswer === 'A',
+                }}
+                answer2={{
+                  label: item.answerB,
+                  correct: item.correctAnswer === 'B',
+                }}
+                answer3={{
+                  label: item.answerC,
+                  correct: item.correctAnswer === 'C',
+                }}
+                answer4={{
+                  label: item.answerD,
+                  correct: item.correctAnswer === 'D',
+                }}
+                answer5={{
+                  label: item.answerE,
+                  correct: item.correctAnswer === 'E',
+                }}
+                date={format(item.updatedAt, 'dd/MM/yyyy')}
+                discipline={item.subject}
+                questionId={item.id}
+                questionText={item.title}
+              />
+            ))}
           </div>
-        </div>
+        </main>
       </div>
 
       <CreateQuestionModal

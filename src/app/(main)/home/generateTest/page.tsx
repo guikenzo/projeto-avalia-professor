@@ -121,7 +121,7 @@ const GenerateTest = () => {
   return (
     <>
       <div className="flex min-h-screen flex-col">
-        <header className="fixed left-0 right-0 top-0 z-10 flex h-20 items-center justify-between rounded-b-md bg-blue-900 px-6 text-white">
+        <header className="flex h-20 items-center justify-between rounded-b-md bg-blue-900 px-6 text-white">
           <h2 className="text-lg font-semibold md:text-xl">
             Projeto Avalia - Área do Professor
           </h2>
@@ -136,8 +136,8 @@ const GenerateTest = () => {
           </div>
         </header>
 
-        <div
-          className="mt-20 flex h-full min-h-screen flex-1 flex-col"
+        <main
+          className="flex flex-1 flex-col"
           style={{ backgroundColor: colors.neutral.background }}
         >
           <div
@@ -290,7 +290,7 @@ const GenerateTest = () => {
               )}
             </div>
           </div>
-        </div>
+        </main>
       </div>
 
       <FilterSidebar
