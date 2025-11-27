@@ -114,8 +114,19 @@ const GenerateTest = () => {
   };
 
   const handleExit = () => {
-    logout();
-    router.replace('/login');
+    openModal({
+      title: 'Sair da conta',
+      message: 'Tem certeza que deseja sair da sua conta?',
+      onCancel: () => {
+        closeModal();
+      },
+      cancelText: 'Fechar',
+      onConfirm: () => {
+        closeModal();
+        logout();
+      },
+      confirmText: 'Sair',
+    });
   };
 
   return (

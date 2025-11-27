@@ -14,11 +14,13 @@ import SearchBar from '@/components/ui/SearchBar';
 import { useAuth } from '@/contexts/authContext';
 import { useDebounce } from '@/hooks/common';
 import { useCreateQuestion, useQuestions } from '@/services/api/questions';
+import { useDefaultModal } from '@/store/defaultModalStore';
 import colors from '@/theme/colors';
 import { QuestionForm } from '@/validation/question.validation';
 
 const Home = () => {
   const router = useRouter();
+  const { openModal, closeModal } = useDefaultModal();
   const { logout } = useAuth();
   const [search, setSearch] = useState('');
   const debouncedSearch = useDebounce(search);
@@ -82,8 +84,19 @@ const Home = () => {
   };
 
   const handleExit = () => {
-    logout();
-    router.replace('/login');
+    openModal({
+      title: 'Sair da conta',
+      message: 'Tem certeza que deseja sair da sua conta?',
+      onCancel: () => {
+        closeModal();
+      },
+      cancelText: 'Fechar',
+      onConfirm: () => {
+        closeModal();
+        logout();
+      },
+      confirmText: 'Sair',
+    });
   };
 
   return (
