@@ -7,16 +7,14 @@ import { http } from '../http';
 
 const BASE_URL = 'https://projeto-avalia-hh2z.onrender.com/disciplinas';
 
-export const useDisciplines = (params: { name: string }) => {
+export const useDisciplines = () => {
   const disciplines = async () => {
-    const { data } = await http.get<IDiscipline[]>(`${BASE_URL}/buscar`, {
-      params,
-    });
+    const { data } = await http.get<IDiscipline[]>(BASE_URL);
     return data;
   };
 
   return useQuery({
-    queryKey: queryKeys.disciplines.search(params),
+    queryKey: queryKeys.disciplines.all,
     queryFn: disciplines,
   });
 };

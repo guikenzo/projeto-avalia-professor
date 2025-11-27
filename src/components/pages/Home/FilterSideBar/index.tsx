@@ -24,7 +24,7 @@ const FilterSidebar = ({
 }: FilterSidebarProps) => {
   const [selectedDisciplines, setSelectedDisciplines] = useState<number[]>([]);
 
-  const { data: disciplineData } = useDisciplines({ name: '' });
+  const { data: disciplineData } = useDisciplines();
 
   const handleDisciplineToggle = (value: number) => {
     setSelectedDisciplines(prev =>

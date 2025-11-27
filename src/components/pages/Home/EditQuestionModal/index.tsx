@@ -39,7 +39,7 @@ const EditQuestionModal = ({
   answer4,
   answer5,
 }: EditQuestionModalProps) => {
-  const { data } = useDisciplines({ name: '' });
+  const { data } = useDisciplines();
 
   const { control, handleSubmit, setValue, reset } = useForm<QuestionForm>({
     resolver: zodResolver(QuestionSchema),
