@@ -88,7 +88,7 @@ const FilterSidebar = ({
             </div>
 
             {/* Content */}
-            <div className="flex h-[calc(100%-140px)] flex-col gap-6 overflow-y-auto p-5">
+            <div className="flex h-[calc(100%-140px)] flex-col gap-6 overflow-y-auto p-5 mb-5">
               {/* Disciplinas */}
               <div>
                 <h3
@@ -113,7 +113,7 @@ const FilterSidebar = ({
 
             {/* Footer com botões */}
             <div
-              className="absolute bottom-0 left-0 right-0 flex gap-3 border-t p-5"
+              className="absolute bottom-0 left-0 right-0 flex gap-3 border-t p-5 bg-white"
               style={{ borderColor: colors.neutral[20] }}
             >
               <button
