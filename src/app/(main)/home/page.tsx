@@ -14,9 +14,11 @@ import colors from '@/theme/colors';
 import { QuestionForm } from '@/validation/question.validation';
 import SearchBar from '@/components/ui/SearchBar';
 import FilterSidebar, { FilterState } from '@/components/pages/Home/FilterSideBar';
+import { useAuth } from '@/contexts/authContext';
 
 function App() {
   const router = useRouter();
+  const {logout} = useAuth();
   const [search, setSearch] = useState('');
   const debouncedSearch = useDebounce(search);
   const [createModalOpen, setCreateModalOpen] = useState(false);
@@ -78,6 +80,10 @@ function App() {
     setActiveFilters(filters);
   };
 
+  const handleExit = async () => {
+    await logout()
+  }
+
   return (
     <>
     <div className="bg-gray-200 min-h-screen font-sans">
@@ -85,14 +91,14 @@ function App() {
         <h2 className="text-lg md:text-xl font-semibold">Projeto Avalia - Área do Professor</h2>
         <div className="flex items-center gap-4 text-lg">
           <span>João da Silva Cunha</span>
-          <button className="text-white text-xl cursor-pointer" onClick={() => abrirPopup("sair")}>
+          <button className="text-white text-xl cursor-pointer" onClick={handleExit}>
             <Icon name='ExitIcon' color={colors.neutral.white} size={24}/>
           </button>
         </div>
       </header>
 
       <div
-          className="ml-[108px] flex h-full min-h-screen flex-1 flex-col"
+          className="flex h-full min-h-screen flex-1 flex-col"
           style={{ backgroundColor: colors.neutral.background }}
         >
           <div className="flex w-full justify-between p-5">
