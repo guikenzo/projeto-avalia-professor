@@ -1,16 +1,11 @@
 export { default as AddIcon } from './Add.svg';
 export { default as CheckIcon } from './Check.svg';
 export { default as ChevronIcon } from './Chevron.svg';
-export { default as DeleteIcon } from './Delete.svg';
-export { default as DisciplinesIcon } from './Disciplines.svg';
 export { default as DocIcon } from './Doc.svg';
 export { default as EditIcon } from './Edit.svg';
 export { default as ExitIcon } from './Exit.svg';
 export { default as EyeIcon } from './Eye.svg';
 export { default as EyeOffIcon } from './EyeOff.svg';
 export { default as FilterIcon } from './Filter.svg';
-export { default as HomeIcon } from './Home.svg';
 export { default as MagnifyingIcon } from './Magnifying.svg';
-export { default as ResetPasswordIcon } from './ResetPassword.svg';
-export { default as TeachersIcon } from './Teachers.svg';
 export { default as XIcon } from './X.svg';
