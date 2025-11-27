@@ -20,7 +20,6 @@ type QuestionItemProps = {
   questionId: number;
   questionText: string;
   discipline: IDiscipline;
-  teacher?: string;
   answer1: Answer;
   answer2: Answer;
   answer3: Answer;
@@ -33,7 +32,6 @@ const QuestionItem = ({
   questionId,
   discipline,
   questionText,
-  teacher,
   answer1,
   answer2,
   answer3,
@@ -98,7 +96,7 @@ const QuestionItem = ({
             className="flex-1 select-none text-2xl font-semibold"
             style={{ color: colors.neutral[80] }}
           >
-            {`${questionText} - ${discipline.name} - ${teacher} (${date})`}
+            {`${questionText} - ${discipline.name} (${date})`}
           </span>
 
           <div className="flex items-center justify-center gap-3">

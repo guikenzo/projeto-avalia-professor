@@ -23,7 +23,6 @@ function App() {
   const [filterSidebarOpen, setFilterSidebarOpen] = useState(false);
   const [activeFilters, setActiveFilters] = useState<FilterState>({
     disciplines: [],
-    teachers: [],
   });
 
   console.log(activeFilters);
@@ -31,7 +30,6 @@ function App() {
   const { data } = useQuestions({
     title: debouncedSearch,
     disciplinaIds: activeFilters.disciplines,
-    professorIds: activeFilters.teachers,
   });
   const { mutateAsync: createQuestion } = useCreateQuestion();
 
@@ -173,7 +171,6 @@ function App() {
                   discipline={item.subject}
                   questionId={item.id}
                   questionText={item.title}
-                  teacher={item.createdBy.username}
                 />
               ))}
           </div>
