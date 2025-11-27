@@ -14,7 +14,7 @@ const DefaultModalFooter = ({
   handleCancel,
 }: Props) => {
   return (
-    <div className="border-neutral-20 flex w-full border-t">
+    <div className="flex w-full border-t border-neutral-200">
       {cancelText && (
         <DefaultModalButton text={cancelText} onClick={handleCancel} />
       )}

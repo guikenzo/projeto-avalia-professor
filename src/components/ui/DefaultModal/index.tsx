@@ -36,14 +36,14 @@ const DefaultModal = () => {
 
   return (
     <DefaultModalBackdrop>
-      <dialog className="relative flex h-[250px] w-[400px] flex-col overflow-hidden rounded-lg bg-white">
+      <dialog className="relative flex h-[250px] w-[400px] flex-col overflow-hidden rounded-lg border-neutral-200 bg-white">
         <DefaultModalHeader title={modal.title} />
 
-        <div className="flex flex-grow flex-col gap-3 p-3">
-          <p className="text-neutral-60 text-lg">{modal.message}</p>
+        <div className="flex grow flex-col gap-3 p-3">
+          <p className="text-lg text-neutral-600">{modal.message}</p>
 
           {modal.notice && (
-            <p className="text-neutral-40 text-sm">{modal.notice}</p>
+            <p className="text-sm text-neutral-500">{modal.notice}</p>
           )}
         </div>
 

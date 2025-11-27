@@ -7,8 +7,8 @@ type Props = {
 
 const DefaultModalHeader = ({ title, onClose }: Props) => {
   return (
-    <div className="bg-neutral-background border-neutral-20 flex items-center justify-between border-b p-3">
-      <h5 className="text-xl">{title}</h5>
+    <div className="bg-neutral-background flex items-center justify-between border-b border-neutral-200 p-3">
+      <h5 className="text-xl font-normal">{title}</h5>
 
       {onClose && (
         <button
@@ -16,7 +16,7 @@ const DefaultModalHeader = ({ title, onClose }: Props) => {
           style={{ width: 28, height: 28 }}
           onClick={onClose}
         >
-          <Icon name="EyeOffIcon" size={16} />
+          <Icon name="XIcon" size={16} />
         </button>
       )}
     </div>
