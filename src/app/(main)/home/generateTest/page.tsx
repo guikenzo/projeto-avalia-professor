@@ -9,19 +9,20 @@ import { useForm } from 'react-hook-form';
 import FilterSidebar, {
   FilterState,
 } from '@/components/pages/Home/FilterSideBar';
-import QuestionItemWithCheckbox from '@/components/pages/Home/QuestionItemWithCheckBox';
+import QuestionItemWithCheckbox from '@/components/pages/Home/QuestionItemWithCheckbox';
 import { Button, Icon, Input } from '@/components/ui';
 import SearchBar from '@/components/ui/SearchBar';
+import { useAuth } from '@/contexts/authContext';
 import { useDebounce } from '@/hooks/common';
 import { useQuestions } from '@/services/api/questions';
+import { useCreateTest } from '@/services/api/test';
 import { useDefaultModal } from '@/store/defaultModalStore';
 import colors from '@/theme/colors';
 import { TestForm, TestSchema } from '@/validation/test.validation';
-import { useAuth } from '@/contexts/authContext';
 
 const GenerateTest = () => {
   const router = useRouter();
-  const {logout} = useAuth();
+  const { logout } = useAuth();
   const [search, setSearch] = useState('');
   const debouncedSearch = useDebounce(search);
   const [filterSidebarOpen, setFilterSidebarOpen] = useState(false);
@@ -36,13 +37,13 @@ const GenerateTest = () => {
     disciplinaIds: activeFilters.disciplines,
     professorIds: [],
   });
+  const { mutateAsync: createTest } = useCreateTest();
 
   const { control, handleSubmit, setValue } = useForm<TestForm>({
     resolver: zodResolver(TestSchema),
     defaultValues: {
       name: '',
       date: '',
-      teacher: 0,
       type: '',
       time: '',
       weight: '',
@@ -68,35 +69,73 @@ const GenerateTest = () => {
   };
 
   const onSubmit = (data: TestForm) => {
-    console.log('Dados da prova:', data);
-    console.log('Questões selecionadas:', selectedQuestions);
-    router.replace('/home');
+    const form = {
+      titulo: data.name,
+      idsQuestoes: data.questions,
+      dataProva: `${data.date}T14:00:00`,
+      tipoAvaliacao: data.type,
+      duracao: Number(data.time),
+      peso: Number(data.weight),
+    };
 
-    openModal({
-      title: 'Sucesso!',
-      message: 'Prova gerada com sucesso!',
-      confirmText: 'Fechar',
-      onConfirm: closeModal,
+    createTest(form, {
+      onSuccess: blob => {
+        const url = window.URL.createObjectURL(blob);
+
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `${data.name}.pdf`;
+        document.body.appendChild(link);
+
+        link.click();
+
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+
+        router.replace('/home');
+
+        openModal({
+          title: 'Sucesso!',
+          message: 'Prova gerada com sucesso!',
+          confirmText: 'Fechar',
+          onConfirm: closeModal,
+        });
+      },
+      onError: error => {
+        console.error('Erro ao gerar prova:', error);
+        openModal({
+          title: 'Erro!',
+          message: 'Falha ao gerar a prova. Tente novamente.',
+          confirmText: 'Fechar',
+          onConfirm: closeModal,
+        });
+      },
     });
   };
 
   const handleExit = async () => {
-    await logout()
-  }
+    await logout();
+  };
 
   return (
     <>
-      <div className="flex-col flex-1 items-start min-h-screen">
+      <div className="min-h-screen flex-1 flex-col items-start">
+        <header className="fixed left-0 right-0 top-0 z-10 flex h-20 items-center justify-between rounded-b-md bg-blue-900 px-6 text-white">
+          <h2 className="text-lg font-semibold md:text-xl">
+            Projeto Avalia - Área do Professor
+          </h2>
 
-      <header className="fixed top-0 left-0 right-0 h-20 bg-blue-900 text-white flex justify-between items-center px-6 rounded-b-md z-10">
-        <h2 className="text-lg md:text-xl font-semibold">Projeto Avalia - Área do Professor</h2>
-        <div className="flex items-center gap-4 text-lg">
-          <span>João da Silva Cunha</span>
-          <button className="text-white text-xl cursor-pointer" onClick={handleExit}>
-            <Icon name='ExitIcon' color={colors.neutral.white} size={24}/>
-          </button>
-        </div>
-      </header>
+          <div className="flex items-center gap-4 text-lg">
+            <span>João da Silva Cunha</span>
+
+            <button
+              className="cursor-pointer text-xl text-white"
+              onClick={handleExit}
+            >
+              <Icon color={colors.neutral.white} name="ExitIcon" size={24} />
+            </button>
+          </div>
+        </header>
 
         <div
           className="flex h-full min-h-screen flex-1 flex-col"
@@ -240,7 +279,6 @@ const GenerateTest = () => {
                     discipline={item.subject}
                     isSelected={selectedQuestions.includes(item.id)}
                     questionText={item.title}
-                    teacher={item.createdBy.email}
                     onToggle={() => handleQuestionToggle(item.id)}
                   />
                 ))

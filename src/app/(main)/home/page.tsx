@@ -5,20 +5,21 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import CreateQuestionModal from '@/components/pages/Home/CreateQuestionModal';
-
+import FilterSidebar, {
+  FilterState,
+} from '@/components/pages/Home/FilterSideBar';
 import QuestionItem from '@/components/pages/Home/QuestionItem';
 import { Icon } from '@/components/ui';
+import SearchBar from '@/components/ui/SearchBar';
+import { useAuth } from '@/contexts/authContext';
 import { useDebounce } from '@/hooks/common';
 import { useCreateQuestion, useQuestions } from '@/services/api/questions';
 import colors from '@/theme/colors';
 import { QuestionForm } from '@/validation/question.validation';
-import SearchBar from '@/components/ui/SearchBar';
-import FilterSidebar, { FilterState } from '@/components/pages/Home/FilterSideBar';
-import { useAuth } from '@/contexts/authContext';
 
-function App() {
+const Home = () => {
   const router = useRouter();
-  const {logout} = useAuth();
+  const { logout } = useAuth();
   const [search, setSearch] = useState('');
   const debouncedSearch = useDebounce(search);
   const [createModalOpen, setCreateModalOpen] = useState(false);
@@ -81,23 +82,30 @@ function App() {
   };
 
   const handleExit = async () => {
-    await logout()
-  }
+    await logout();
+  };
 
   return (
     <>
-    <div className="bg-gray-200 min-h-screen font-sans">
-      <header className="fixed top-0 left-0 right-0 h-20 bg-blue-900 text-white flex justify-between items-center px-6 rounded-b-md z-10">
-        <h2 className="text-lg md:text-xl font-semibold">Projeto Avalia - Área do Professor</h2>
-        <div className="flex items-center gap-4 text-lg">
-          <span>João da Silva Cunha</span>
-          <button className="text-white text-xl cursor-pointer" onClick={handleExit}>
-            <Icon name='ExitIcon' color={colors.neutral.white} size={24}/>
-          </button>
-        </div>
-      </header>
+      <div className="min-h-screen flex-1 flex-col items-start">
+        <header className="fixed left-0 right-0 top-0 z-10 flex h-20 items-center justify-between rounded-b-md bg-blue-900 px-6 text-white">
+          <h2 className="text-lg font-semibold md:text-xl">
+            Projeto Avalia - Área do Professor
+          </h2>
 
-      <div
+          <div className="flex items-center gap-4 text-lg">
+            <span>João da Silva Cunha</span>
+
+            <button
+              className="cursor-pointer text-xl text-white"
+              onClick={handleExit}
+            >
+              <Icon color={colors.neutral.white} name="ExitIcon" size={24} />
+            </button>
+          </div>
+        </header>
+
+        <div
           className="flex h-full min-h-screen flex-1 flex-col"
           style={{ backgroundColor: colors.neutral.background }}
         >
@@ -197,6 +205,6 @@ function App() {
       />
     </>
   );
-}
+};
 
-export default App;
+export default Home;
