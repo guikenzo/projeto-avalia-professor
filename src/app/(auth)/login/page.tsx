@@ -15,10 +15,6 @@ const Login = () => {
 
   const { control, handleSubmit } = useForm<LoginForm>({
     resolver: zodResolver(LoginSchema),
-    defaultValues: {
-      email: 'dasdsa@gmai.com',
-      password: '12134',
-    },
   });
 
   const onSubmit = async (data: LoginForm) => {
