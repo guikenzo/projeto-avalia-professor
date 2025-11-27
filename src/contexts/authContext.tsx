@@ -11,6 +11,7 @@ import {
 
 import { useLogin } from '@/hooks/api/useAuthApi';
 import { http } from '@/services/http';
+import { useDefaultModal } from '@/store/defaultModalStore';
 import { LoginForm } from '@/validation/login.validation';
 
 type ContextValues = {
@@ -24,6 +25,7 @@ const AuthContext = createContext({} as ContextValues);
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const router = useRouter();
   const pathname = usePathname();
+  const { openModal, closeModal } = useDefaultModal();
 
   const [isReady, setIsReady] = useState(false);
   const { mutateAsync } = useLogin();
@@ -45,6 +47,12 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
         router.replace('/home');
       }
     } catch {
+      openModal({
+        title: 'Dados inválidos',
+        message: 'Verifique os dados inseridos e tente novamente.',
+        onConfirm: closeModal,
+        confirmText: 'Fechar',
+      });
       logout();
     }
   };
