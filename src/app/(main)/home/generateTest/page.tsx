@@ -127,8 +127,6 @@ const GenerateTest = () => {
           </h2>
 
           <div className="flex items-center gap-4 text-lg">
-            <span>João da Silva Cunha</span>
-
             <button
               className="cursor-pointer text-xl text-white"
               onClick={handleExit}
@@ -139,7 +137,7 @@ const GenerateTest = () => {
         </header>
 
         <div
-          className="flex h-full min-h-screen flex-1 flex-col"
+          className="flex h-full flex-1 flex-col"
           style={{ backgroundColor: colors.neutral.background }}
         >
           <div
