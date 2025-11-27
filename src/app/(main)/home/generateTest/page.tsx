@@ -113,8 +113,8 @@ const GenerateTest = () => {
     });
   };
 
-  const handleExit = async () => {
-    await logout();
+  const handleExit = () => {
+    logout();
   };
 
   return (

@@ -81,8 +81,8 @@ const Home = () => {
     setActiveFilters(filters);
   };
 
-  const handleExit = async () => {
-    await logout();
+  const handleExit = () => {
+    logout();
   };
 
   return (
