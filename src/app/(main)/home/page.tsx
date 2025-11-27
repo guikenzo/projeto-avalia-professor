@@ -83,6 +83,7 @@ const Home = () => {
 
   const handleExit = () => {
     logout();
+    router.replace('/login');
   };
 
   return (
