@@ -7,7 +7,7 @@ const BASE_URL = 'https://projeto-avalia-hh2z.onrender.com/auth';
 export const authService = {
   login: async (form: LoginForm) => {
     const { data } = await http.post<{ token: string }>(
-      `${BASE_URL}/login`,
+      `${BASE_URL}/login-professor`,
       form,
     );
     return data;
