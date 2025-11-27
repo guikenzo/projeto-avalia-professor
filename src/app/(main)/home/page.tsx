@@ -89,7 +89,7 @@ const Home = () => {
   return (
     <>
       <div className="min-h-screen flex-1 flex-col items-start">
-        <header className="flex h-20 items-center justify-between rounded-b-md bg-blue-900 px-6 text-white">
+        <header className="fixed flex h-20 items-center justify-between rounded-b-md bg-blue-900 px-6 text-white">
           <h2 className="text-lg font-semibold md:text-xl">
             Projeto Avalia - Área do Professor
           </h2>
@@ -105,7 +105,7 @@ const Home = () => {
         </header>
 
         <div
-          className="flex h-full flex-1 flex-col"
+          className="mt-20 flex h-full min-h-screen flex-1 flex-col"
           style={{ backgroundColor: colors.neutral.background }}
         >
           <div className="flex w-full justify-between p-5">
