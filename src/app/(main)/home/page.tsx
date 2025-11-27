@@ -30,6 +30,7 @@ function App() {
   const { data } = useQuestions({
     title: debouncedSearch,
     disciplinaIds: activeFilters.disciplines,
+    professorIds: [],
   });
   const { mutateAsync: createQuestion } = useCreateQuestion();
 
