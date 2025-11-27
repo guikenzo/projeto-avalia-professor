@@ -11,12 +11,9 @@ import FilterSidebar, {
 } from '@/components/pages/Home/FilterSideBar';
 import QuestionItemWithCheckbox from '@/components/pages/Home/QuestionItemWithCheckBox';
 import { Button, Icon, Input } from '@/components/ui';
-import NavBar from '@/components/ui/NavBar';
 import SearchBar from '@/components/ui/SearchBar';
-import { DropdownFormTeacher } from '@/components/ui/SelectTeacherDropdown';
 import { useDebounce } from '@/hooks/common';
 import { useQuestions } from '@/services/api/questions';
-import { useTeachers } from '@/services/api/teachers';
 import { useDefaultModal } from '@/store/defaultModalStore';
 import colors from '@/theme/colors';
 import { TestForm, TestSchema } from '@/validation/test.validation';
@@ -39,7 +36,6 @@ const GenerateTest = () => {
     disciplinaIds: activeFilters.disciplines,
     professorIds: [],
   });
-  const { data: teacherData } = useTeachers({ name: '' });
 
   const { control, handleSubmit, setValue } = useForm<TestForm>({
     resolver: zodResolver(TestSchema),
